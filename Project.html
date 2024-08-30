@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Box</title>
+    <body background="bg3.jpg">
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #24231f;
+            font-family: 'Arial', sans-serif;
+            color: #2b2525;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #a4aa6c; /* Light green background */
+            color: #010c06;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(23, 24, 23, 0.3); /* Subtle green shadow */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(to right, #8a7a7a, #000000);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            margin: 0;
+            animation: fadeIn 5s ease-in-out;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #070301;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #8d4ca5;
+        }
+
+        .search-box {
+            margin-top: 20px;ss
+            display : flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-box input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background-color: #110505;
+            color: #f7f4f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background-color: #ff416c;
+        }
+
+        .promo-code {
+            background-color: #05630c; /* Light green background for promo section */
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid #26a055; /* Green border */
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        section {
+            padding: 40px 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .highlighted {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: linear-gradient(to right, #8214db, #b4577b); /* Two-color gradient */
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 3s ease-in-out;
+     } 
+
+        .highlighted img {
+            max-width:fit-content;
+            border-radius: 10px;
+            animation: bounceIn 3s ease-in-out;
+        }
+
+        .highlighted-text {
+            max-width: 50%;
+        }
+
+        .highlighted-text h2 {
+    font-size: 32px;
+    color: #792fbe;
+    font-family: 'Pacifico', cursive; /* Cursive font for heading */
+}
+
+.highlighted-text p {
+    font-size: 18px;
+    color: #000000;
+    font-family: 'regista', serif; /* Times New Roman font for paragraph */
+}
+
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .product {
+            background-color: #dadab7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(245, 241, 241, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+        }
+
+        .product h3 {
+            font-size: 20px;
+            color: #000307;
+            margin: 15px 0 10px;
+        }
+
+        .product p {
+            color: #666;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 20px;
+        }
+
+        footer {
+            background-color: #ddd784;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">Treasure Box</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="Search gifts...">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <!-- Promo Code Section -->
+    <!-- Promo Code Section -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Treasure Box</title>
+        <style>
+            /* General Page Styling */
+            body {
+                background-color: #afa474;
+                font-family: 'Arial', sans-serif;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+    
+            .highlighted {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: linear-gradient(to right, #8214db, #c59bab); /* Two-color gradient */
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .highlighted {
+    display: flex;
+    align-items: center;
+}
+
+.highlighted img {
+    margin-right: 50px; /* Add some space between shraddha and the text */
+}
+
+.highlighted-text {
+    max-width: 0%; /* Adjust the width of the text container if needed */
+}
+
+.highlighted-text h2, .highlighted-text p {
+    margin: 10;
+}
+
+    
+            .highlighted img {
+                max-width: 300px;
+                height: auto;
+                border-radius: 10px;
+            }
+    
+            .highlighted-text {
+                max-width: 50%;
+                margin-left: 20px;
+            }
+    
+    
+            .highlighted-text h2 {
+                font-size: 50px;
+                color: #780cdd;
+                font-family: 'Pacifico', cursive; /* Cursive font for heading */
+            }
+    
+            .highlighted-text p {
+                font-size: 18px;
+                color: #000000;
+                font-family: 'Great Vibes', cursive; /* Glyphstyle font for paragraph */
+            }
+        </style>
+    </head>
+    <body>        
+    
+        <!-- Promo Code Section -->
+        <section id="home">
+            <div class="highlighted">
+                <img src="Shrads.jpeg" alt="Featured Gift" width="350" height="350" >
+                <div class="highlighted-text">
+                    <h2>Discover the Perfect Gift</h2>
+                    <p><i>Find unique gifts for every occasion with special discounts!</i></p>
+                </div>
+            </div>
+        </section>
+    
+    </body>
+    </html>                                                                                                                                                                                                                                                                                                                                                                              
+    
+
+   <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+
+            
+            <div class="product">
+                <img src="Teddy.jpg" alt="Plush Teddy Bear">
+                <h3><i>Hello ji</i></h3>
+                <p>&#8377 1299</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="Hamper.jpg" alt="Cute Teddy Bear">
+                <h3><i>Soft Dog</i></h3>
+                <p>&#8377 1499</p>
+                <p>★★★★★</p>
+            </div>
+            <div class="product">
+                <img src="moon.jpg" alt="Large Teddy Bear">
+                <h3><i>Clips set</i></h3>
+                <p>&#8377 999</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="moon1.jpg" alt="Mini Teddy Bear">
+                <h3><i>Bows</i></h3>
+                <p>&#8377 499</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="perfume.1jpg.jpg" alt="Classic Teddy Bear">
+                <h3>Gift hamper</h3>
+                <p>&#8377 1099</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="perfume.jpg" alt="Makeup Set">
+                <h3><i>Makeup Set</i></h3>
+                <p>&#8377 1599</p>
+                <p>★★★★★</p>
+            </div>
+            <div class="product">
+                <img src="perfume2.jpg" alt="Mini Gift Set">
+                <h3>Love Cup</h3>
+                <p>&#8377 1249</p>
+                <p>★★★☆☆</p>
+            </div>
+            <div class="product">
+                <img src="perfume3.jpg" alt="Ear Rings">
+                <h3><i>Coffee Cup</i></h3>
+                <p>&#8377 699</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="perfume4.jpg" alt="Cleture">
+                <h3><i>Dad Special Cup</i></h3>
+                <p>&#8377 799</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="perfume5.jpg" alt="Cleture">
+                <h3><i>Mothers Day Special</i></h3>
+                <p>&#8377 999</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="set.jpg" alt="Cars">
+                <h3><i>Google Coffee Cup</i></h3>
+                <p>&#8377 3499</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="te2.jpg" alt="Couple">
+                <h3><i>Couple Coffee Cup</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="teddy1.jpg" alt="Couple">
+                <h3><i>Family Frame</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="toy.jpg" alt="Couple">
+                <h3><i>BFF's Frame</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="Teddy.jpg" alt="Couple">
+                <h3><i>Birthday Frame</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="toy1.jpg" alt="Couple">
+                <h3><i>Solo Frame</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="toy2.jpg" alt="Couple">
+                <h3><i>Dad Frame</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="toy3.jpg" alt="Couple">
+                <h3><i></i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="toy4.jpg" alt="Couple">
+                <h3><i>Couple</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>
+            <div class="product">
+                <img src="moon2.jpg" alt="Couple">
+                <h3><i>Couple</i></h3>
+                <p>&#8377 599</p>
+                <p>★★★★☆</p>
+            </div>        
+                           
+    
+
+
+    </section>
+    <section id="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-list">
+            <div class="review">
+                <p>"Great selection of gifts! Will shop here again."</p>
+                <span>- Jane Doe</span>
+            </div>
+            <div class="review">
+                <p>"Fast shipping and excellent customer service."</p>
+                <span>- John Smith</span>
+            </div>
+            <div class="review">
+                <p>"The perfect place to find something special."</p>
+                <span>- Adams Wiliams</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>Welcome to Treasure Box, your one-stop shop for unique and thoughtful gifts. Founded in 2020, our mission is to help you find the perfect gift for every occasion, whether it's a birthday, anniversary, or just because.</p>
+        <p>We are committed to offering high-quality products that bring joy and happiness to both the giver and the receiver. Our team carefully curates a selection of gifts that are not only beautiful but also meaningful.</p>
+        <p>Our core values include integrity, innovation, and a customer-first approach. We believe in creating a shopping experience that is as delightful as the gifts we offer.</p>
+        <p>Meet our dedicated team of gift enthusiasts who work tirelessly to ensure your satisfaction. We are proud to have served thousands of happy customers and look forward to serving you.</p>
+        <p>Thank you for choosing Treasure Box. We are excited to be a part of your special moments.</p>
+    </section>
+    
+
+    <footer>
+        <p style="color: black;">&copy; 2024 Treasure Box. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
